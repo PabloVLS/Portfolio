@@ -60,7 +60,7 @@ interface LabItem {
 export class AppComponent {
   readonly fullName = 'PABLO VINICIUS';
   readonly subtitle =
-    'Full-Stack Engineer building reliable systems, clean interfaces and measurable digital products.';
+    'Engenheiro Full-Stack construindo sistemas confiáveis, interfaces limpas e produtos digitais mensuráveis.';
 
   readonly icons = {
     home: Home,
@@ -87,14 +87,14 @@ export class AppComponent {
 
   readonly now = signal(new Date());
   readonly currentTime = computed(() =>
-    this.now().toLocaleTimeString('en-US', {
+    this.now().toLocaleTimeString('pt-BR', {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
     }),
   );
   readonly currentDate = computed(() =>
-    this.now().toLocaleDateString('en-US', {
+    this.now().toLocaleDateString('pt-BR', {
       day: '2-digit',
       month: 'short',
     }),
@@ -104,42 +104,42 @@ export class AppComponent {
     {
       name: 'PatroServicos-SD',
       description:
-        'Educational distributed architecture with a clear separation of responsibilities between services.',
+        'Arquitetura distribuída para fins educacionais com separação clara de responsabilidades entre serviços.',
       stack: ['Java Spring Boot 3.1', 'Python FastAPI', 'PostgreSQL', 'MongoDB'],
       details: [
-        'Highlight: Monorepo with 3+ services (Manager + 2 Spring + FastAPI).',
-        'Impact: Round-robin load balancing, fault tolerance and orchestration between services.',
-        'Concepts: Multiple databases (relational + NoSQL) and inter-layer communication.',
+        'Destaque: Monorepo com 3+ serviços (Manager + 2 Spring + FastAPI).',
+        'Impacto: Balanceamento round-robin, tolerância a falhas e orquestração entre serviços.',
+        'Conceitos: Múltiplos bancos (relacional + NoSQL) e comunicação entre camadas.',
       ],
       repoUrl: 'https://github.com/PabloVLS/PatroServicos-Sistemas-Distribuidos',
     },
     {
       name: 'FleetVision-Predict',
       description:
-        'Fleet vehicle forecasting system using time series and long-term projections.',
+        'Sistema de previsão para frotas usando séries temporais e projeções de longo prazo.',
       stack: ['Java Spring Boot 3', 'Thymeleaf', 'Linear Regression', 'Polynomial Regression'],
       details: [
-        'Highlight: Predictive analysis with historical data from 2006 to 2024.',
-        'Impact: Projections up to 2050 using linear and polynomial mathematical models.',
-        'Use Case: Demonstrates time series in real mobility contexts.',
+        'Destaque: Análise preditiva com dados históricos de 2006 a 2024.',
+        'Impacto: Projeções até 2050 usando modelos matemáticos lineares e polinomiais.',
+        'Caso de uso: Demonstra séries temporais em contextos reais de mobilidade.',
       ],
       repoUrl: 'https://github.com/PabloVLS/FleetVision-Predict',
     },
     {
       name: 'CreditCard Mobile',
       description:
-        'Android app with an advanced UI for real-time credit card simulation.',
+        'Aplicativo Android com UI avançada para simulação de cartões de crédito em tempo real.',
       stack: ['Kotlin', 'ConstraintLayout', 'CardView', 'TextWatcher'],
       details: [
-        'Highlight: Dynamic Card Flipper with card brand detection (Visa/Mastercard).',
-        'Challenge: Real-time UI sync and automatic input formatting.',
+        'Destaque: Card Flipper dinâmico com detecção de bandeira (Visa/Mastercard).',
+        'Desafio: Sincronização da UI em tempo real e formatação automática de entradas.',
       ],
       repoUrl: 'https://github.com/PabloVLS/CreditCard_Mobile',
     },
     {
       name: 'Car Recommendation Service',
       description:
-        'Intelligent vehicle recommendation system using K-Means clustering to suggest the ideal car based on user technical specifications.',
+        'Sistema inteligente de recomendação de veículos usando K-Means para sugerir o carro ideal com base em especificações técnicas do usuário.',
       stack: [
         'Java 21',
         'Spring Boot 3.2.12',
@@ -149,9 +149,9 @@ export class AppComponent {
         'Bootstrap 5.3',
       ],
       details: [
-        'Backend: Spring Boot Web, Thymeleaf and Actuator for API, HTML rendering and monitoring.',
-        'ML/Data: Runtime execution of modelo_kmeans_carros.pmml with JPMML and Excel processing using POI-OOXML 5.2.5.',
-        'Frontend: HTML5, CSS3 and JavaScript with Bootstrap 5.3.',
+        'Backend: Spring Boot Web, Thymeleaf e Actuator para API, renderização HTML e monitoramento.',
+        'ML/Dados: Execução em runtime do modelo_kmeans_carros.pmml com JPMML e processamento Excel usando POI-OOXML 5.2.5.',
+        'Frontend: HTML5, CSS3 e JavaScript com Bootstrap 5.3.',
       ],
       repoUrl: 'https://github.com/PabloVLS/Car-Recomendation-Service',
     },
@@ -178,27 +178,27 @@ export class AppComponent {
 
   readonly highlights: StatItem[] = [
     {
-      label: 'End-to-End Delivery',
+      label: 'Entrega de ponta a ponta',
       value: '18+',
-      detail: 'Projects in production and academic — from architecture to deployment.',
+      detail: 'Projetos em produção e acadêmicos — da arquitetura ao deploy.',
       icon: 'build',
     },
     {
-      label: 'Distributed Architecture',
+      label: 'Arquitetura distribuída',
       value: '3+',
-      detail: 'Systems with multiple services (PatroServicos-SD, Java/Python/FastAPI microservices).',
+      detail: 'Sistemas com múltiplos serviços (PatroServicos-SD, microserviços Java/Python/FastAPI).',
       icon: 'infra',
     },
     {
-      label: 'Multiplatform Integration',
+      label: 'Integração multiplataforma',
       value: '5+',
-      detail: 'Android (Kotlin), Web (Spring Boot + Thymeleaf) and Backend (Java, Python, Node.js).',
+      detail: 'Android (Kotlin), Web (Spring Boot + Thymeleaf) e Backend (Java, Python, Node.js).',
       icon: 'code',
     },
     {
-      label: 'Predictive Analytics & AI',
+      label: 'Análise preditiva & IA',
       value: '2+',
-      detail: 'Semi-supervised regression models and historical data processing.',
+      detail: 'Modelos de regressão semissupervisionados e processamento de dados históricos.',
       icon: 'ai',
     },
   ];
@@ -240,28 +240,28 @@ export class AppComponent {
     {
       title: 'Pluri',
       type: 'Project',
-      role: 'Full-Stack Development for academic assessment',
-      period: '2025 - Present',
+      role: 'Desenvolvimento Full-Stack para avaliação acadêmica',
+      period: '2025 - Presente',
       summary:
-        'Built a multidisciplinary system for IFTM connecting assessment, management and reporting modules with Angular frontend and Java/Spring Boot backend.',
+        'Construiu um sistema multidisciplinar para o IFTM conectando módulos de avaliação, gestão e relatórios com frontend Angular e backend Java/Spring Boot.',
       highlights: [
-        'API design and integration across academic modules',
-        'Responsive UI implementation with usability-first approach',
-        'Dockerized deployments for consistent environments',
+        'Desenho e integração de APIs entre módulos acadêmicos',
+        'Implementação de UI responsiva com abordagem focada em usabilidade',
+        'Deploys dockerizados para ambientes consistentes',
       ],
     },
     {
       title: 'Haltune',
       type: 'Company',
-      role: 'Full-Stack Developer',
-      period: 'Present',
+      role: 'Desenvolvedor Full-Stack',
+      period: 'Atualmente',
       summary:
-        'Contributed to full-stack development, feature architecture, external integrations, performance improvements and operational support.',
+        'Contribuiu para desenvolvimento Full-Stack, arquitetura de funcionalidades, integrações externas, melhorias de performance e suporte operacional.',
       highlights: [
-        'Delivered end-to-end features and maintenance',
-        'Provided technical guidance on infra and observability',
-        'Automated processes and collaborated with product teams',
-        'Improved operational monitoring and alerting',
+        'Entrega de funcionalidades ponta a ponta e manutenção',
+        'Orientação técnica em infraestrutura e observabilidade',
+        'Automatização de processos e colaboração com times de produto',
+        'Aprimoramento de monitoramento operacional e alertas',
       ],
     },
   ];

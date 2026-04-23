@@ -99,7 +99,7 @@
           <button
             type="button"
             class="dock-item"
-            aria-label="Previous project"
+            aria-label="Projeto anterior"
             [disabled]="!hasMultipleProjects()"
             (click)="previousProject()"
           >
@@ -108,7 +108,7 @@
           <button
             type="button"
             class="dock-item"
-            aria-label="Next project"
+            aria-label="Próximo projeto"
             [disabled]="!hasMultipleProjects()"
             (click)="nextProject()"
           >
@@ -183,7 +183,7 @@
             [class.w-7]="isActiveProject(i)"
             [class.w-2.5]="!isActiveProject(i)"
             [class.carousel-indicator-active]="isActiveProject(i)"
-            [attr.aria-label]="'Go to project ' + project.name"
+            [attr.aria-label]="'Ir para o projeto ' + project.name"
             (click)="setActiveProject(i)"
           ></button>
         </div>
@@ -227,8 +227,8 @@
 
     <section id="experience" class="mx-auto w-full max-w-6xl px-6 pb-24">
       <div class="mb-8">
-        <h3 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Experience Timeline</h3>
-        <p class="mt-2 text-sm text-ash">Resumo de projetos e atuacao profissional recente.</p>
+        <h3 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Linha do tempo de experiência</h3>
+        <p class="mt-2 text-sm text-ash">Resumo de projetos e atuação profissional recente.</p>
       </div>
 
       <div class="experience-grid">
@@ -289,7 +289,7 @@
     <div class="dock-panel rounded-2xl border border-white/10 px-3 py-3">
       <div class="flex flex-wrap items-center gap-3">
         <div class="flex items-center gap-2">
-          <button type="button" class="dock-item" aria-label="Hero" (click)="scrollToSection('home')">
+          <button type="button" class="dock-item" aria-label="Início" (click)="scrollToSection('home')">
             <lucide-angular [img]="icons.home" [size]="18"></lucide-angular>
           </button>
           <button type="button" class="dock-item" aria-label="Foco" (click)="scrollToSection('focus')">
