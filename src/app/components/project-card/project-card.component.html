@@ -1,0 +1,63 @@
+<article
+  class="project-surface group relative flex h-full min-h-[390px] flex-col justify-between rounded-3xl p-6 transition duration-500"
+  [class.project-surface-active]="active"
+  [class.project-surface-idle]="!active"
+>
+  <div class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent"></div>
+  
+  <div class="flex flex-1 gap-6">
+    <!-- Left Column: Description -->
+    <div class="flex-1 flex flex-col gap-4">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-xl font-bold tracking-tight text-white">{{ project.name }}</h3>
+        <lucide-angular [img]="icons.stack" [size]="16" class="text-ash flex-shrink-0 mt-0.5"></lucide-angular>
+      </div>
+
+      <p class="text-sm leading-relaxed text-ash">{{ project.description }}</p>
+
+      <ul *ngIf="project.details?.length" class="space-y-2">
+        <li
+          *ngFor="let detail of project.details; trackBy: trackByTech"
+          class="rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2 text-[11px] leading-relaxed text-white/90"
+        >
+          {{ detail }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Right Column: Tech Stack Vertical -->
+    <div class="flex flex-col gap-2.5 items-end">
+      <span
+        *ngFor="let tech of project.stack; trackBy: trackByTech"
+        class="rounded-lg border border-white/20 bg-white/[0.04] px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/85 whitespace-nowrap"
+      >
+        {{ tech }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="mt-4 flex flex-wrap gap-2">
+    <a
+      *ngIf="project.repoUrl"
+      [href]="project.repoUrl"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/[0.03] px-3.5 py-2 text-xs uppercase tracking-[0.12em] text-white/85 transition duration-300 hover:border-white/40 hover:bg-white/[0.10]"
+    >
+      Repo
+      <lucide-angular [img]="icons.repo" [size]="13"></lucide-angular>
+    </a>
+
+    <a
+      *ngIf="project.liveUrl"
+      [href]="project.liveUrl"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/[0.03] px-3.5 py-2 text-xs uppercase tracking-[0.12em] text-white/85 transition duration-300 hover:border-white/40 hover:bg-white/[0.10]"
+    >
+      Demo
+      <lucide-angular [img]="icons.external" [size]="12"></lucide-angular>
+    </a>
+  </div>
+</article>

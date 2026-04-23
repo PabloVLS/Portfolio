@@ -1,1 +1,467 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    @apply bg-obsidian font-geo text-mist antialiased;
+    margin: 0;
+    position: relative;
+    overflow-x: clip;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply border border-white/10 bg-white/[0.05] shadow-glass backdrop-blur-xl;
+  }
+
+  .dock-panel {
+    @apply glass-card;
+  }
+
+  .dock-item {
+    @apply grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/90 transition duration-300 hover:-translate-y-1 hover:border-white/30 hover:bg-white/[0.10];
+  }
+
+  .dock-item:disabled {
+    @apply cursor-not-allowed opacity-50 hover:translate-y-0 hover:border-white/10 hover:bg-white/[0.03];
+  }
+
+  .wireframe-grid {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.12), transparent 45%);
+    background-size: 32px 32px, 32px 32px, 100% 100%;
+  }
+
+  .marquee-track {
+    width: max-content;
+  }
+
+  .focus-card {
+    @apply glass-card rounded-2xl p-6;
+  }
+
+  .focus-title {
+    @apply text-xs uppercase tracking-[0.24em] text-white;
+  }
+
+  .focus-text {
+    @apply mt-3 text-sm leading-relaxed text-ash;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-card {
+    @apply glass-card rounded-3xl p-6;
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.08), rgba(8, 8, 8, 0.8));
+    min-height: 210px;
+    transition: transform 260ms ease, border-color 260ms ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .filter-chip {
+    @apply inline-flex items-center rounded-full border border-white/20 bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/80 transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.10];
+  }
+
+  .filter-chip-active {
+    border-color: rgba(255, 255, 255, 0.54);
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+  }
+
+  .filter-reset {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.05] px-3 py-2 text-[10px] uppercase tracking-[0.18em] text-white/90 transition duration-300 hover:border-white/40 hover:bg-white/[0.13];
+  }
+
+  .project-empty {
+    @apply glass-card mx-auto flex max-w-md flex-col items-center rounded-3xl p-8 text-center;
+  }
+
+  .social-row {
+    @apply flex flex-1 items-center justify-end gap-2;
+  }
+
+  .social-pill {
+    @apply inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-3 py-2 text-xs uppercase tracking-[0.14em] text-white/90 transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/[0.12];
+  }
+
+  .clock-pill {
+    @apply inline-flex items-center gap-2 rounded-xl border border-white/10 bg-black/40 px-3 py-2 text-xs uppercase tracking-[0.14em] text-white;
+  }
+
+  .carousel-shell {
+    position: relative;
+    --carousel-width: min(48vw, 680px);
+    --carousel-center-offset: min(42vw, 580px);
+    min-height: 430px;
+    width: 100%;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .carousel-shell::before,
+  .carousel-shell::after {
+    display: none;
+  }
+
+  .carousel-lane {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .carousel-item {
+    position: absolute;
+    width: var(--carousel-width);
+    height: 390px;
+    opacity: 0;
+    filter: brightness(0.4) blur(1px);
+    transform: scale(0.6) translateY(32px);
+    transform-origin: center;
+    transition: all 680ms cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .carousel-center {
+    position: relative;
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    transform: scale(1) translateY(0);
+    z-index: 50;
+    pointer-events: auto;
+  }
+
+  .carousel-left {
+    transform: scale(0.68) translateX(calc(-1 * var(--carousel-center-offset))) translateY(16px);
+    opacity: 0.42;
+    filter: brightness(0.62) saturate(0.7) blur(0.5px);
+    z-index: 30;
+    pointer-events: auto;
+  }
+
+  .carousel-right {
+    transform: scale(0.68) translateX(var(--carousel-center-offset)) translateY(16px);
+    opacity: 0.42;
+    filter: brightness(0.62) saturate(0.7) blur(0.5px);
+    z-index: 30;
+    pointer-events: auto;
+  }
+
+  .carousel-hidden {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .carousel-indicator {
+    @apply transition-all duration-300 rounded-full bg-white/25 hover:bg-white/40;
+    height: 3px;
+  }
+
+  .carousel-indicator-active {
+    @apply bg-white;
+  }
+
+  .project-surface {
+    @apply glass-card;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  /* Adjust project card typography to a slightly smaller, more compact size */
+  .project-surface h3 {
+    @apply text-xl;
+  }
+
+  .project-surface p {
+    @apply text-sm leading-relaxed;
+  }
+
+  .project-surface ul li {
+    font-size: 12px;
+    line-height: 1.3;
+  }
+
+  .project-surface-active {
+    border-color: rgba(255, 255, 255, 0.54);
+    background: rgba(5, 5, 5, 0.95);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  }
+
+  .project-surface-idle {
+    border-color: rgba(255, 255, 255, 0.14);
+    opacity: 0.9;
+  }
+
+  /* Remove visible border for cards inside the carousel */
+  .carousel-item .project-surface {
+    border: none;
+    border-color: transparent !important;
+  }
+
+  .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .experience-card {
+    @apply glass-card rounded-3xl p-6 flex flex-col justify-between;
+    height: 415px;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    background: rgba(5, 5, 5, 0.95);
+    transition: transform 260ms ease, border-color 260ms ease, background-color 260ms ease;
+  }
+
+  .experience-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.24);
+  }
+
+  .experience-header {
+    @apply flex flex-wrap items-center justify-between gap-2;
+  }
+
+  .experience-badge {
+    @apply inline-flex rounded-full border border-white/25 bg-white/[0.08] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white;
+  }
+
+  .experience-period {
+    @apply text-xs uppercase tracking-[0.14em] text-ash;
+  }
+
+  .experience-tag {
+    @apply rounded-full border border-white/20 bg-white/[0.08] px-3 py-1.5 text-[11px] leading-relaxed text-white/90;
+  }
+
+  .lab-status-pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/[0.05] px-4 py-2 text-[10px] uppercase tracking-[0.2em] text-white/90;
+  }
+
+  .lab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .lab-card {
+    @apply glass-card relative overflow-hidden rounded-3xl p-6;
+    background: radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.16), transparent 45%),
+      rgba(5, 5, 5, 0.95);
+    transition: transform 260ms ease, border-color 260ms ease;
+  }
+
+  .lab-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.32);
+  }
+
+  .lab-topline {
+    @apply flex items-start justify-between gap-4;
+  }
+
+  .lab-title {
+    @apply text-lg font-bold tracking-tight text-white;
+  }
+
+  .lab-badge {
+    @apply inline-flex rounded-full border border-white/20 bg-white/[0.08] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white;
+  }
+
+  .lab-badge-research {
+    border-color: rgba(129, 140, 248, 0.75);
+    background: rgba(79, 70, 229, 0.22);
+  }
+
+  .lab-badge-building {
+    border-color: rgba(134, 239, 172, 0.75);
+    background: rgba(34, 197, 94, 0.2);
+  }
+
+  .lab-badge-playground {
+    border-color: rgba(251, 191, 36, 0.75);
+    background: rgba(245, 158, 11, 0.22);
+  }
+
+  .lab-point {
+    @apply rounded-xl border border-white/20 bg-white/[0.07] px-3 py-2 text-[11px] leading-relaxed text-white/90;
+  }
+}
+
+.space-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.1), transparent 36%),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.08), transparent 30%),
+    #050505;
+}
+
+.space-nebula {
+  position: absolute;
+  inset: -25%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.07), transparent 45%),
+    radial-gradient(circle at 75% 70%, rgba(255, 255, 255, 0.06), transparent 50%);
+  filter: blur(26px);
+  animation: nebulaShift 32s ease-in-out infinite alternate;
+}
+
+.space-layer {
+  position: absolute;
+  inset: -15%;
+  background-repeat: repeat;
+  opacity: 0.65;
+}
+
+.layer-a {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.68) 1px, transparent 1.8px);
+  background-size: 120px 120px;
+  animation: starDrift 95s linear infinite;
+}
+
+.layer-b {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.55) 1px, transparent 2px);
+  background-size: 180px 180px;
+  animation: starDriftReverse 130s linear infinite;
+  opacity: 0.45;
+}
+
+.layer-c {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.35) 1px, transparent 2.4px);
+  background-size: 250px 250px;
+  animation: starDrift 165s linear infinite;
+  opacity: 0.28;
+}
+
+@keyframes starDrift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-180px, -120px, 0) scale(1.08);
+  }
+}
+
+@keyframes starDriftReverse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(180px, -80px, 0) scale(1.04);
+  }
+}
+
+@keyframes nebulaShift {
+  0% {
+    transform: translate3d(-2%, -2%, 0) scale(1);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translate3d(3%, 2%, 0) scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+@keyframes centerGlow {
+  0% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 24px 8px rgba(255, 255, 255, 0.08);
+  }
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel-shell {
+    --carousel-width: min(60vw, 640px);
+    --carousel-center-offset: min(38vw, 480px);
+    min-height: 410px;
+  }
+ }
+
+@media (max-width: 768px) {
+  .carousel-shell {
+    --carousel-width: min(88vw, 500px);
+    --carousel-center-offset: min(36vw, 280px);
+    min-height: 360px;
+  }
+
+  .carousel-left {
+    transform: scale(0.64) translateX(calc(-1 * var(--carousel-center-offset))) translateY(20px);
+    opacity: 0.32;
+  }
+
+  .carousel-right {
+    transform: scale(0.64) translateX(var(--carousel-center-offset)) translateY(20px);
+    opacity: 0.32;
+  }
+
+  .social-row {
+    justify-content: center;
+    width: 100%;
+    order: 3;
+  }
+
+  .stats-grid,
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card {
+    min-height: 290px;
+  }
+}
