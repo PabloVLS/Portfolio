@@ -269,17 +269,17 @@ export class AppComponent {
   readonly socialLinks = [
     {
       label: 'LinkedIn',
-      href: '#',
+      href: 'https://www.linkedin.com/in/pablo-vinicius-a1002124a/',
       icon: Linkedin,
     },
     {
       label: 'GitHub',
-      href: '#',
+      href: 'https://github.com/PabloVLS',
       icon: Github,
     },
     {
       label: 'Email',
-      href: 'mailto:pablo.vinicius@exemplo.com',
+      href: 'mailto:viniciuspablo801@gmail.com',
       icon: Mail,
     },
   ];
