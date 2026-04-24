@@ -60,7 +60,7 @@ interface LabItem {
 export class AppComponent {
   readonly fullName = 'PABLO VINICIUS';
   readonly subtitle =
-    'Engenheiro Full-Stack construindo sistemas confiáveis, interfaces limpas e produtos digitais mensuráveis.';
+    'Desenvolvedor Full-Stack construindo sistemas confiáveis, interfaces limpas e produtos digitais mensuráveis.';
 
   readonly icons = {
     home: Home,
