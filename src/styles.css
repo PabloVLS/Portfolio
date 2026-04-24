@@ -435,9 +435,9 @@
 
 @media (max-width: 768px) {
   .carousel-shell {
-    --carousel-width: min(88vw, 500px);
-    --carousel-center-offset: min(36vw, 280px);
-    min-height: 360px;
+    --carousel-width: min(92vw, 520px);
+    --carousel-center-offset: min(34vw, 240px);
+    min-height: 330px;
   }
 
   .carousel-left {
@@ -461,7 +461,92 @@
     grid-template-columns: 1fr;
   }
 
+  .dock-panel {
+    border-radius: 1rem;
+    padding: 0.6rem;
+  }
+
+  .dock-item {
+    height: 2.2rem;
+    width: 2.2rem;
+    border-radius: 0.7rem;
+  }
+
+  .social-pill {
+    padding: 0.5rem;
+    min-width: 2.2rem;
+    justify-content: center;
+  }
+
+  .clock-pill {
+    width: 100%;
+    justify-content: center;
+    order: 4;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+  }
+
+  .project-surface {
+    border-radius: 1.25rem;
+  }
+
+  .project-surface ul li {
+    font-size: 11px;
+  }
+
   .experience-card {
     min-height: 290px;
+    height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-shell {
+    min-height: 0;
+  }
+
+  .carousel-lane {
+    min-height: 0;
+  }
+
+  .carousel-item {
+    position: relative;
+    width: min(94vw, 520px);
+    height: auto;
+    transform: none;
+    filter: none;
+    opacity: 1;
+    cursor: default;
+  }
+
+  .carousel-center {
+    transform: none;
+  }
+
+  .carousel-left,
+  .carousel-right,
+  .carousel-hidden {
+    display: none;
+  }
+
+  .project-surface {
+    min-height: 0;
+    padding: 1.15rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .filter-chip {
+    padding: 0.45rem 0.7rem;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .clock-pill {
+    display: none;
+  }
+
+  .experience-card {
+    padding: 1rem;
   }
 }
